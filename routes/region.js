@@ -1,9 +1,13 @@
 const router = require('express').Router();
 const {setUser} = require('../middleware/user');
-const {createRegion} = require('../controller/region/region');
+const {createRegion, updateRegion, deleteRegion} = require('../controller/region/region');
+const { checkRegion } = require('../middleware/region');
+
+router.use(setUser);
+
 
 //create region
-router.post('/',setUser, createRegion);
+router.post('/', createRegion);
 
 // //fetch all region
 // router.get('/', );
@@ -11,11 +15,11 @@ router.post('/',setUser, createRegion);
 // //fetch single region
 // router.get('/:regionUid', );
 
-// //update region
-// router.patch('/:regionUid', );
+//update region
+router.patch('/:regionUid', checkRegion, updateRegion);
 
-// //delete region
-// router.delete('/:regionUid', );
+//delete region
+router.delete('/:regionUid', checkRegion, deleteRegion);
 
 
 // //create a vector in a region

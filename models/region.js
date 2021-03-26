@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { prependListener } = require('./user');
 const Schema = mongoose.Schema;
 
 const RegionSchema = new Schema({
@@ -27,6 +28,11 @@ const RegionSchema = new Schema({
         type: mongoose.Types.ObjectId,
         ref: "users"
     }
+});
+
+RegionSchema.pre("findOne", function (next) {
+    this.populate("owner");
+    next();
 });
 
 const region = mongoose.model('region', RegionSchema);

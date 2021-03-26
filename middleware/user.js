@@ -24,7 +24,7 @@ const setUser = async (req, res, next) =>{
 }
 
 
-    module.exports = {
+module.exports = {
     validateBody,
     setUser
 };
