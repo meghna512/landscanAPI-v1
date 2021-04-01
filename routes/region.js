@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const {setUser} = require('../middleware/user');
-const {createRegion, updateRegion, deleteRegion} = require('../controller/region/region');
+const {createRegion, updateRegion, deleteRegion, getRegion} = require('../controller/region/region');
 const { checkRegion } = require('../middleware/region');
 
 router.use(setUser);
@@ -9,11 +9,11 @@ router.use(setUser);
 //create region
 router.post('/', createRegion);
 
-// //fetch all region
-// router.get('/', );
+//fetch all region
+router.get('/', getRegion);
 
-// //fetch single region
-// router.get('/:regionUid', );
+//fetch single region
+router.get('/:regionUid', checkRegion, getRegion);
 
 //update region
 router.patch('/:regionUid', checkRegion, updateRegion);
