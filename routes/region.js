@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const {setUser} = require('../middleware/user');
 const {createRegion, updateRegion, deleteRegion, getRegion} = require('../controller/region/region');
-const { checkRegion } = require('../middleware/region');
+const { checkRegion, checkVector } = require('../middleware/region');
+const {createVector, updateVector, deleteVector, getVector} = require('../controller/vector/vector');
 
 router.use(setUser);
 
@@ -11,6 +12,9 @@ router.post('/', createRegion);
 
 //fetch all region
 router.get('/', getRegion);
+
+//fetch single vector in a region
+router.get('/vector', getVector );
 
 //fetch single region
 router.get('/:regionUid', checkRegion, getRegion);
@@ -22,19 +26,13 @@ router.patch('/:regionUid', checkRegion, updateRegion);
 router.delete('/:regionUid', checkRegion, deleteRegion);
 
 
-// //create a vector in a region
-// router.post('/:regionUid/vector', );
+//create a vector in a region
+router.post('/:regionUid/vector', checkRegion ,createVector);
 
-// //fetch all vectors in a region
-// router.get('/:regionUid/vector/', );
+//update vector in a region
+router.patch('/:regionUid/vector/:vectorUid', checkRegion, checkVector, updateVector);
 
-// //fetch single vector in a region
-// router.get('/:regionUid/vector/:vectorUid', );
-
-// //update vector in a region
-// router.patch('/:regionUid/vector/:vectorUid', );
-
-// //delete vector
-// router.delete('/:regionUid/vector/:vectorUid', );
+//delete vector
+router.delete('/:regionUid/vector/:vectorUid', checkRegion, checkVector, deleteVector);
 
 module.exports = router;

@@ -11,15 +11,20 @@ const VectorSchema = new Schema({
         type: String,
         required: true
     },
-    description: String,
+    description: {
+        type: String,
+        default: ""
+    },
     classID: Number,
     className: String,
     polygon: {
         type: {
             type: String
         },
-        geometry:{
-            type: Polygon,
+        geometry: {
+            type: {
+                type: String
+            },
             coordinates: [[[Number]]]
         }
     },
@@ -31,6 +36,11 @@ const VectorSchema = new Schema({
         type: mongoose.Types.ObjectId,
         ref: "users"
     }
+});
+
+VectorSchema.pre("findOne", function (next) {
+    this.populate("owner");
+    next();
 });
 
 const vector = mongoose.model("vector", VectorSchema);

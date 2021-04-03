@@ -29,6 +29,7 @@ const RegionSchema = new Schema({
         ref: "users"
     }
 });
+RegionSchema.index({location : '2dsphere'});
 
 RegionSchema.pre("findOne", function (next) {
     this.populate("owner");
