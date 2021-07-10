@@ -1,4 +1,4 @@
-![Node js](./assets/node.png)
+![Node js](./assets/nodejs-logo.png)
 
 # LandScan API
 This is a project related to GIS (Geographical Information Systems). Assume that we have a GIS dataset containing a georeferenced, high-resolution map of a region. This dataset also includes vectors that are drawn over the region. Both the map and the vectors have a certain set of attributes associated with them. 
