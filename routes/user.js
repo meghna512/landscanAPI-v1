@@ -8,4 +8,4 @@ router.post('/login', validateBody, loginUser);
 //signup
 router.post('/signup', validateBody, createUser);
 
-module.exports = router;
+module.exports = router;    

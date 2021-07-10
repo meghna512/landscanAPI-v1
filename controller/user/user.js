@@ -17,20 +17,20 @@ const createUser = async (req, res) => {
     const token = jwt.sign({ userName: newUser.userName }, process.env.SECRET);
     return res.status(201).json({ token });
 
-}
+}   
 
 const loginUser = async (req, res) => {
     let user;
     let token;
     try {
-         user = await Users.findOne({ userName: req.body.userName });
+        user = await Users.findOne({ userName: req.body.userName });
     } catch (err) {
         return res.status(500).json({'message': err.message});
     }
     if (user) {
         const passwordMatch = bcrypt.compareSync(req.body.password, user.password);
         if (passwordMatch) {
-            token = jwt.sign({ userName: user.userName , uid: user.uid}, process.env.SECRET);
+            token = jwt.sign({ userName: user.userName , uid: user.uid}, process.env.SECRET); //for authorisation
 
         } else {
             return res.status(401).json({ message: "Incorrect password" });

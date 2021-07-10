@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const {setUser} = require('../middleware/user');
 const {createRegion, updateRegion, deleteRegion, getRegion} = require('../controller/region/region');
-const { checkRegion, checkVector } = require('../middleware/region');
+const {checkRegion, checkVector } = require('../middleware/region');
 const {createVector, updateVector, deleteVector, getVector} = require('../controller/vector/vector');
 
 router.use(setUser);
